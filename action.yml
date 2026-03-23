@@ -1,0 +1,47 @@
+name: NPM Release
+description: Trusted publishing for npm packages
+author: Flare
+
+branding:
+  icon: 'package'
+  color: 'orange'
+
+inputs:
+  path:
+    description: Path to the package root directory
+    required: false
+    default: '.'
+
+  build_script:
+    description: Build script to run before publishing. Defaults to no build script.
+    required: false
+    default: ''
+
+  strict_version:
+    description: Enforce that the git tag version matches package.json version
+    required: false
+    default: 'true'
+
+  debug_mode:
+    description: Enable debug output
+    required: false
+    default: 'false'
+
+  dry_run:
+    description: Enable dry run
+    required: false
+    default: 'false'
+
+  regex_stable_tag:
+    description: Regex to match stable release tags (e.g. v1.0.0 or service/v1.0.0)
+    required: false
+    default: '^([a-zA-Z0-9_-]+/)?v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$'
+
+  regex_unstable_tag:
+    description: Regex to match unstable release tags (e.g. v1.0.0-rc.1 or v1.0.0-alpha.1)
+    required: false
+    default: '^([a-zA-Z0-9_-]+/)?v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)-(rc|alpha)\.(0|[1-9][0-9]*)$'
+
+runs:
+  using: node24
+  main: dist/index.js
